@@ -5,7 +5,7 @@ public class TokensView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _countTokens;
 
-    public void UpdateNumberTokens(int numberTokens)
+    public void SetTokensAmount(int numberTokens)
     {
         _countTokens.text = numberTokens.ToString();
     }

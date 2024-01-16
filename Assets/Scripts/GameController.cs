@@ -12,29 +12,51 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerDataView _playerDataView;
     [SerializeField] private Chest _chest;
     [SerializeField] private ChestView _chestView;
+    [SerializeField] private SpinButtonController _spinButtonController;
 
 
     private void Awake()
     {
+        Initialize();
+
+        SetResourcesAmount();
+
+        SubscribeToEvents();
+    }
+
+    private void SetResourcesAmount()
+    {
+        _tokensView.SetTokensAmount(_tokensManager.TokensCount);
+        _playerDataView.SetResourcesAmount(_playerData.GoldCount, _playerData.GemCount, _playerData.LivesCount);
+    }
+
+    private void Initialize()
+    {
         _spinDrumController.Initialize(_tokensManager);
         _chest.Initialize(_tokensManager);
-        var countTokens = _tokensManager.GetCountTokens();
-        _tokensView.UpdateNumberTokens(countTokens);
-        _playerDataView.SetAmountResources(_playerData.GoldCount,_playerData.GemCount,_playerData.LivesCount);
-        _tokensManager.OnDestroyToken += _tokensView.UpdateNumberTokens;
-        _spinDrumController.OnRotationFinished += _stopLineController.ActivationRay;
-        _stopLineController.OnAwardEarned += _awardsController.InitializeAward;
-        _chest.OnResourcesWon += _chestView.UpdateAmountResourcesWon;
-        _chest.OnResourcesWon += _playerData.UpdateAmountResources;
-        _playerData.OnResourceUpdated += _playerDataView.UpdateAmountResources;
+    }
+
+    private void SubscribeToEvents()
+    {
+        _tokensManager.OnDestroyToken += _tokensView.SetTokensAmount;
+        _spinDrumController.OnRotationFinished += _stopLineController.RayActivation;
+        _spinDrumController.OnRotationFinished += _spinButtonController.ChangeButtonInteractivity;
+        _stopLineController.OnAwardEarned += _awardsController.Initialize;
+        _chest.OnResourcesWon += _chestView.UpdateResourcesWonAmount;
+        _chest.OnResourcesWon += _playerData.UpdateResourcesAmount;
+        _playerData.OnResourceUpdated += _playerDataView.UpdateResourcesAmount;
+        _chest.OnPlayAnimation += _spinButtonController.ChangeButtonInteractivity;
     }
 
     private void OnDestroy()
     {
-        _tokensManager.OnDestroyToken -= _tokensView.UpdateNumberTokens;
-        _spinDrumController.OnRotationFinished -= _stopLineController.ActivationRay;
-        _stopLineController.OnAwardEarned -= _awardsController.InitializeAward;
-        _chest.OnResourcesWon -= _chestView.UpdateAmountResourcesWon;
-        _playerData.OnResourceUpdated -= _playerDataView.UpdateAmountResources;
+        _tokensManager.OnDestroyToken -= _tokensView.SetTokensAmount;
+        _spinDrumController.OnRotationFinished -= _stopLineController.RayActivation;
+        _spinDrumController.OnRotationFinished -= _spinButtonController.ChangeButtonInteractivity;
+        _stopLineController.OnAwardEarned -= _awardsController.Initialize;
+        _chest.OnResourcesWon -= _chestView.UpdateResourcesWonAmount;
+        _chest.OnResourcesWon -= _playerData.UpdateResourcesAmount;
+        _playerData.OnResourceUpdated -= _playerDataView.UpdateResourcesAmount;
+        _chest.OnPlayAnimation -= _spinButtonController.ChangeButtonInteractivity;
     }
 }

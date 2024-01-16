@@ -3290,6 +3290,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321275786}
   m_CullTransparentMesh: 1
+--- !u!1 &1323708287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1323708288}
+  m_Layer: 5
+  m_Name: TokensRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1323708288
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323708287}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1019352589}
+  m_Father: {fileID: 2127124032}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1334263838
 GameObject:
   m_ObjectHideFlags: 0
@@ -3773,8 +3810,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tokenPrefab: {fileID: 2582102772244126931, guid: 4042e9ed041ed574a9411fc8b6a99273, type: 3}
-  _rootToken: {fileID: 2127124032}
-  _countTokens: 5
+  _tokenRoot: {fileID: 1323708288}
+  <TokensCount>k__BackingField: 3
 --- !u!4 &1468896851
 Transform:
   m_ObjectHideFlags: 0
@@ -4443,10 +4480,10 @@ RectTransform:
   m_Father: {fileID: 569967107}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 599.80493, y: -46.981}
-  m_SizeDelta: {x: 110.993, y: 102.952}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -349, y: -7}
+  m_SizeDelta: {x: 110.99304, y: 102.952}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1686336961
 MonoBehaviour:
@@ -4763,7 +4800,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2143354495}
         m_TargetAssemblyTypeName: SpinDrumController, Assembly-CSharp
-        m_MethodName: RotationDrum
+        m_MethodName: RotateDrum
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4775,7 +4812,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1468896850}
         m_TargetAssemblyTypeName: TokensManager, Assembly-CSharp
-        m_MethodName: Initialize
+        m_MethodName: TokenSpawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6217,8 +6254,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1323708288}
   - {fileID: 426957200}
-  - {fileID: 1019352589}
   - {fileID: 18505414}
   - {fileID: 2051609999}
   m_Father: {fileID: 569967107}
@@ -6404,7 +6441,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 2127124032}
+    m_TransformParent: {fileID: 1323708288}
     m_Modifications:
     - target: {fileID: -6734226440762060916, guid: 4042e9ed041ed574a9411fc8b6a99273, type: 3}
       propertyPath: _animator
@@ -6468,15 +6505,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4479251783038624253, guid: 4042e9ed041ed574a9411fc8b6a99273, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4479251783038624253, guid: 4042e9ed041ed574a9411fc8b6a99273, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4479251783038624253, guid: 4042e9ed041ed574a9411fc8b6a99273, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4479251783038624253, guid: 4042e9ed041ed574a9411fc8b6a99273, type: 3}
       propertyPath: m_AnchoredPosition.x

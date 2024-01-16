@@ -8,7 +8,7 @@ public class AwardsController : MonoBehaviour
    
    private Award _award;
    
-   public void InitializeAward(int award)
+   public void Initialize(int award)
    {
       _awardRoot.gameObject.SetActive(true);
       _award = Instantiate(_allAwardsPrefabs[award], parent: _awardRoot);

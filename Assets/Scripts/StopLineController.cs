@@ -20,23 +20,23 @@ public class StopLineController : MonoBehaviour
             switch (hitInfo.collider.tag)
             {
                 case  GlobalConstants.GOLD_TAG:
-                    OnAwardEarned?.Invoke(0);
+                    OnAwardEarned?.Invoke((int)Awards.Gold);
                     break;
                 case GlobalConstants.GEM_TAG:
-                    OnAwardEarned?.Invoke(1);
+                    OnAwardEarned?.Invoke((int)Awards.Gem);
                     break;
                 case GlobalConstants.LIVE_TAG:
-                    OnAwardEarned?.Invoke(2);
+                    OnAwardEarned?.Invoke((int)Awards.Live);
                     break;
                 case GlobalConstants.SKULL_TAG:
-                    OnAwardEarned?.Invoke(3);
+                    OnAwardEarned?.Invoke((int)Awards.Skull);
                     break;
             }
             _isOnRay = false;
         }
     }
     
-    public void ActivationRay(bool stayRotation)
+    public void RayActivation(bool stayRotation)
     {
         _isOnRay = stayRotation;
     }

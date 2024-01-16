@@ -16,7 +16,7 @@ public class PlayerDataView : MonoBehaviour
     private float _amountGemBeforeWinning;
     private float _amountLivesBeforeWinning;
 
-    public void SetAmountResources(int goldCount,int gemCount, int liveCount)
+    public void SetResourcesAmount(int goldCount,int gemCount, int liveCount)
     {
         _amountGoldBeforeWinning = goldCount;
         _amountGemBeforeWinning = gemCount;
@@ -26,7 +26,7 @@ public class PlayerDataView : MonoBehaviour
         _liveCount.text = liveCount.ToString();
     }
 
-    public void UpdateAmountResources(int amountGold, int amountGem, int amountLives)
+    public void UpdateResourcesAmount(int amountGold, int amountGem, int amountLives)
     {
         _currentAmountGold = amountGold;
         _currentAmountGem = amountGem;
