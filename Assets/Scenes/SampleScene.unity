@@ -4614,6 +4614,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1686336967}
+        m_TargetAssemblyTypeName: WinningResourcesStorage, Assembly-CSharp
+        m_MethodName: AddResourcesToPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1686336966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4816,18 +4828,6 @@ MonoBehaviour:
       - m_Target: {fileID: 2143354495}
         m_TargetAssemblyTypeName: SpinDrumController, Assembly-CSharp
         m_MethodName: RotateDrum
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1468896850}
-        m_TargetAssemblyTypeName: TokensManager, Assembly-CSharp
-        m_MethodName: TokenSpawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
