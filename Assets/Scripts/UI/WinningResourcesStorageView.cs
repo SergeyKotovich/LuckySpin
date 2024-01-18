@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class ChestView : MonoBehaviour 
+public class WinningResourcesStorageView : MonoBehaviour 
 {
     [SerializeField] private TextMeshProUGUI _amountGoldWon;
     [SerializeField] private TextMeshProUGUI _amountGemWon;

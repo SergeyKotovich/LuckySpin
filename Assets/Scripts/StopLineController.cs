@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class StopLineController : MonoBehaviour
 {
+    public event Action <int> OnAwardEarned;
+    
     private bool _isOnRay ;
     private Vector3 _offset = new(0, -55, 0);
     private int _lenghtRay = 250;
-    public event Action <int> OnAwardEarned;
-
+    
     private void Update()
     {
         if (!_isOnRay)
@@ -19,17 +20,17 @@ public class StopLineController : MonoBehaviour
         {
             switch (hitInfo.collider.tag)
             {
-                case  GlobalConstants.GOLD_TAG:
-                    OnAwardEarned?.Invoke((int)Awards.Gold);
+                case GlobalConstants.GOLD_TAG:
+                    OnAwardEarned?.Invoke((int)AwardsType.Gold);
                     break;
                 case GlobalConstants.GEM_TAG:
-                    OnAwardEarned?.Invoke((int)Awards.Gem);
+                    OnAwardEarned?.Invoke((int)AwardsType.Gem);
                     break;
                 case GlobalConstants.LIVE_TAG:
-                    OnAwardEarned?.Invoke((int)Awards.Live);
+                    OnAwardEarned?.Invoke((int)AwardsType.Live);
                     break;
                 case GlobalConstants.SKULL_TAG:
-                    OnAwardEarned?.Invoke((int)Awards.Skull);
+                    OnAwardEarned?.Invoke((int)AwardsType.Skull);
                     break;
             }
             _isOnRay = false;

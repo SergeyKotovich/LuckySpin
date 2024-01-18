@@ -15,6 +15,7 @@ public class PlayerData : MonoBehaviour
         GemCount += amountGemWon;
         LivesCount += amountLiveWon;
     }
+    
     [UsedImplicitly]
     public void AddResources()
     {

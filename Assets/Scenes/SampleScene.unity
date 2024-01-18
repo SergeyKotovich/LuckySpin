@@ -4454,6 +4454,7 @@ GameObject:
   - component: {fileID: 1686336963}
   - component: {fileID: 1686336965}
   - component: {fileID: 1686336966}
+  - component: {fileID: 1686336967}
   m_Layer: 5
   m_Name: Chest
   m_TagString: Untagged
@@ -4557,7 +4558,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1686336963}
   _rootChest: {fileID: 1384741315}
-  _spinButton: {fileID: 1748659052}
 --- !u!114 &1686336965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4629,6 +4629,18 @@ MonoBehaviour:
   _amountGoldWon: {fileID: 1963184067}
   _amountGemWon: {fileID: 1389274391}
   _amountLiveWon: {fileID: 291401003}
+--- !u!114 &1686336967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686336959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0258f444e79a1b4780472cca630568e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1728787679
 GameObject:
   m_ObjectHideFlags: 0
@@ -4667,8 +4679,10 @@ MonoBehaviour:
   _awardsController: {fileID: 2097229018}
   _playerData: {fileID: 1728787683}
   _playerDataView: {fileID: 1728787682}
-  _chest: {fileID: 1686336964}
-  _chestView: {fileID: 1686336966}
+  chestAnimationController: {fileID: 1686336964}
+  winningResourcesStorageView: {fileID: 1686336966}
+  _spinButtonController: {fileID: 1748659055}
+  _winningResourcesStorage: {fileID: 1686336967}
 --- !u!4 &1728787681
 Transform:
   m_ObjectHideFlags: 0
@@ -4726,6 +4740,7 @@ GameObject:
   - component: {fileID: 1748659054}
   - component: {fileID: 1748659053}
   - component: {fileID: 1748659052}
+  - component: {fileID: 1748659055}
   m_Layer: 5
   m_Name: Spin
   m_TagString: Untagged
@@ -4824,7 +4839,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1468896850}
         m_TargetAssemblyTypeName: TokensManager, Assembly-CSharp
-        m_MethodName: DestroyToken
+        m_MethodName: UseToken
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4872,6 +4887,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748659050}
   m_CullTransparentMesh: 1
+--- !u!114 &1748659055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748659050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc524f439de19746b714a68b4b7289d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spinButton: {fileID: 1748659052}
 --- !u!1 &1862605628
 GameObject:
   m_ObjectHideFlags: 0
@@ -5985,7 +6013,8 @@ MonoBehaviour:
   - {fileID: 7967896072888551118, guid: 593abe5216a8b2c48ab578b22b1319c9, type: 3}
   - {fileID: 2095862199794562244, guid: cf8e0db8caa804349803c0bdfd81f668, type: 3}
   _awardRoot: {fileID: 540850643}
-  _chest: {fileID: 1686336964}
+  _winningResourcesStorage: {fileID: 1686336967}
+  _chestAnimationController: {fileID: 1686336964}
 --- !u!4 &2097229019
 Transform:
   m_ObjectHideFlags: 0
@@ -6434,7 +6463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxRotationTime: 3
   _maxRotationSpeed: 1000
-  _spinButton: {fileID: 1748659052}
 --- !u!1001 &4479251782162151408
 PrefabInstance:
   m_ObjectHideFlags: 0

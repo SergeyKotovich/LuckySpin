@@ -1,4 +1,4 @@
-public enum Awards
+public enum AwardsType
 {
     Gold = 0,
     Gem = 1,

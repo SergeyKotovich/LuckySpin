@@ -1,38 +1,34 @@
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
 public class Award : MonoBehaviour
 {
+    public event Action OnStartPulseAnimation;
+    public event Action OnStartMovementAnimation;
     [field:SerializeField] public AwardParameters AwardParameters { get; private set; }
-    private Chest _chest;
+    
     private Transform _awardRoot;
 
     [UsedImplicitly]
-    public void DestroyAward()
+    public void PlayPulseAnimation()
     {
-        if (gameObject!=null)
-        {
-            _chest.StartPulsationAnimation();
-            Destroy(gameObject);
-            _awardRoot.gameObject.SetActive(false);
-        }
+        OnStartPulseAnimation?.Invoke();
+        gameObject.SetActive(false);
+        _awardRoot.gameObject.SetActive(false);
     }
     
     [UsedImplicitly]
-    public void DestroySkull()
+    public void PlayMovementAnimation()
     {
-        if (gameObject != null)
-        {
-            _chest.StartMovementAnimation();
-            Destroy(gameObject);
-            _awardRoot.gameObject.SetActive(false);
-        }
+        OnStartMovementAnimation?.Invoke();
+        gameObject.SetActive(false);
+        _awardRoot.gameObject.SetActive(false);
     }
     
-    public void Initialize(Chest chest, Transform awardRoot)
+    public void Initialize(Transform awardRoot)
     {
         _awardRoot = awardRoot;
-        _chest = chest;
     }
    
     

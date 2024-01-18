@@ -12,15 +12,8 @@ public class SpinDrumController : MonoBehaviour
     [SerializeField] private float _maxRotationTime;
     [SerializeField] private float _maxRotationSpeed;
     
-    private TokensManager _tokensManager;
-    
     private float _minRotationTime = 1f ;
     private float _minRotationSpeed = 25;
-    
-    public void Initialize(TokensManager tokensManager)
-    {
-        _tokensManager = tokensManager;
-    }
     
     [UsedImplicitly]
     public void RotateDrum()

@@ -190,10 +190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189bf98a6a7e3ca448141e049627958f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundAward: {fileID: 0}
   <AwardParameters>k__BackingField:
     <AwardsCount>k__BackingField: 2
-    <Award>k__BackingField: 1
+    <AwardType>k__BackingField: 1
 --- !u!1 &2876697968745149681
 GameObject:
   m_ObjectHideFlags: 0
