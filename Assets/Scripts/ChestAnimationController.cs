@@ -10,7 +10,8 @@ public class ChestAnimationController : MonoBehaviour
 
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _rootChest;
-    
+    [SerializeField] private ParticleSystem[] _particleSystems;
+
     private static readonly int _pulse = Animator.StringToHash("pulse");
     private static readonly int _movement = Animator.StringToHash("movement");
     private static readonly int _show = Animator.StringToHash("show");
@@ -51,5 +52,14 @@ public class ChestAnimationController : MonoBehaviour
    public void OnSpinButton()
    {
        PlayAnimationFinished?.Invoke(true);
+   }
+
+   [UsedImplicitly]
+   public void Play()
+   {
+       for (var i = 0; i < _particleSystems.Length; i++)
+       {
+           _particleSystems[i].Play();
+       }
    }
 }

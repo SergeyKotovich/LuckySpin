@@ -7,6 +7,8 @@ public class Award : MonoBehaviour
     public event Action OnStartPulseAnimation;
     public event Action OnStartMovementAnimation;
     [field:SerializeField] public AwardParameters AwardParameters { get; private set; }
+
+    [SerializeField] private ParticleSystem _particleSystem;
     
     private Transform _awardRoot;
 
@@ -14,14 +16,19 @@ public class Award : MonoBehaviour
     public void PlayPulseAnimation()
     {
         OnStartPulseAnimation?.Invoke();
-        gameObject.SetActive(false);
-        _awardRoot.gameObject.SetActive(false);
+        AwardDisable();
     }
     
     [UsedImplicitly]
     public void PlayMovementAnimation()
     {
         OnStartMovementAnimation?.Invoke();
+        AwardDisable();
+    }
+    
+    private void AwardDisable()
+    {
+        _particleSystem.Stop();
         gameObject.SetActive(false);
         _awardRoot.gameObject.SetActive(false);
     }
@@ -29,6 +36,12 @@ public class Award : MonoBehaviour
     public void Initialize(Transform awardRoot)
     {
         _awardRoot = awardRoot;
+    }
+    
+    [UsedImplicitly]
+    public void Play()
+    {
+        _particleSystem.Play();
     }
    
     

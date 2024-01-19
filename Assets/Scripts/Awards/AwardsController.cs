@@ -8,7 +8,7 @@ public class AwardsController : MonoBehaviour
     [SerializeField] private Transform _awardRoot;
     [SerializeField] private WinningResourcesStorage _winningResourcesStorage;
     [SerializeField] private ChestAnimationController _chestAnimationController;
-   
+
     private Award _award;
 
     private List<Award> _allAwards = new();
