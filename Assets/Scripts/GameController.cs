@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private WinningResourcesStorageView winningResourcesStorageView;
     [SerializeField] private SpinButtonController _spinButtonController;
     [SerializeField] private WinningResourcesStorage _winningResourcesStorage;
+    [SerializeField] private SoundsManager _soundsManager;
 
 
     private void Awake()
@@ -39,6 +40,7 @@ public class GameController : MonoBehaviour
     private void SubscribeToEvents()
     {
         _tokensManager.OnDestroyToken += _tokensView.SetTokensAmount;
+        _tokensManager.OnDestroyToken += _soundsManager.PlayAudio;
         _spinDrumController.OnRotationFinished += _stopLineController.RayActivation;
         _spinDrumController.OnRotationFinished += _spinButtonController.ChangeButtonInteractivity;
         _stopLineController.OnAwardEarned += _awardsController.SpawnAward;
@@ -51,6 +53,7 @@ public class GameController : MonoBehaviour
     private void OnDestroy()
     {
         _tokensManager.OnDestroyToken -= _tokensView.SetTokensAmount;
+        _tokensManager.OnDestroyToken -= _soundsManager.PlayAudio;
         _spinDrumController.OnRotationFinished -= _stopLineController.RayActivation;
         _spinDrumController.OnRotationFinished -= _spinButtonController.ChangeButtonInteractivity;
         _stopLineController.OnAwardEarned -= _awardsController.SpawnAward;
