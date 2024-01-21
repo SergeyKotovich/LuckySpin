@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ChestAnimationController : MonoBehaviour
 {
     public event Action<bool> PlayAnimationFinished; 
+    
+    private Action _onPlayCollectPrize;
 
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _rootChest;
@@ -18,9 +20,10 @@ public class ChestAnimationController : MonoBehaviour
     
     private TokensManager _tokensManager;
     
-    public void Initialize(TokensManager tokensManager)
+    public void Initialize(TokensManager tokensManager, Action onPlayCollectPrize)
     {
         _tokensManager = tokensManager;
+        _onPlayCollectPrize = onPlayCollectPrize;
     }
     
     [UsedImplicitly]
@@ -55,11 +58,18 @@ public class ChestAnimationController : MonoBehaviour
    }
 
    [UsedImplicitly]
-   public void Play()
+   public void OnGlow()
    {
        for (var i = 0; i < _particleSystems.Length; i++)
        {
            _particleSystems[i].Play();
        }
    }
+
+   [UsedImplicitly]
+   public void PlayCollectPrize()
+   {
+       _onPlayCollectPrize?.Invoke();
+   }
+   
 }

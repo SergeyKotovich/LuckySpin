@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class SpinDrumController : MonoBehaviour
 { 
     public event Action <bool> OnRotationFinished;
+    public event Action<bool> OnRotationStart;
     
     [SerializeField] private float _maxRotationTime;
     [SerializeField] private float _maxRotationSpeed;
@@ -21,7 +22,7 @@ public class SpinDrumController : MonoBehaviour
     {
         _particleSystem.Play();
         StartCoroutine(RotateDrumCoroutine());
-        OnRotationFinished?.Invoke(false);
+        OnRotationStart?.Invoke(true);
     }
 
     private IEnumerator RotateDrumCoroutine()
@@ -36,6 +37,7 @@ public class SpinDrumController : MonoBehaviour
             yield return null;
         }
         OnRotationFinished?.Invoke(true);
+        OnRotationStart?.Invoke(false);
         _particleSystem.Stop();
     }
 }

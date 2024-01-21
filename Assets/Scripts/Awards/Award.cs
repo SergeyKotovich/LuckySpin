@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class Award : MonoBehaviour
 {
-    public event Action OnStartPulseAnimation;
-    public event Action OnStartMovementAnimation;
+    private Action _onStartPulse;
+    private Action _onStartMovement;
+    
     [field:SerializeField] public AwardParameters AwardParameters { get; private set; }
 
     [SerializeField] private ParticleSystem _particleSystem;
     
     private Transform _awardRoot;
-
+    
     [UsedImplicitly]
     public void PlayPulseAnimation()
     {
-        OnStartPulseAnimation?.Invoke();
+        _onStartPulse?.Invoke();
         AwardDisable();
     }
     
     [UsedImplicitly]
     public void PlayMovementAnimation()
     {
-        OnStartMovementAnimation?.Invoke();
+        _onStartMovement?.Invoke();
         AwardDisable();
     }
     
@@ -33,8 +34,10 @@ public class Award : MonoBehaviour
         _awardRoot.gameObject.SetActive(false);
     }
     
-    public void Initialize(Transform awardRoot)
+    public void Initialize(Transform awardRoot, Action onStartPulse , Action onStartMovement )
     {
+        _onStartMovement = onStartMovement;
+        _onStartPulse = onStartPulse;
         _awardRoot = awardRoot;
     }
     

@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private AwardsController _awardsController;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private PlayerDataView _playerDataView;
-    [SerializeField] private ChestAnimationController chestAnimationController;
+    [SerializeField] private ChestAnimationController _chestAnimationController;
     [SerializeField] private WinningResourcesStorageView winningResourcesStorageView;
     [SerializeField] private SpinButtonController _spinButtonController;
     [SerializeField] private WinningResourcesStorage _winningResourcesStorage;
@@ -34,32 +34,34 @@ public class GameController : MonoBehaviour
 
     private void Initialize()
     {
-        chestAnimationController.Initialize(_tokensManager);
+        _chestAnimationController.Initialize(_tokensManager, _soundsManager.PlayCollectPrizeSound);
+        _tokensManager.Initialize(_soundsManager.PlayInsertTicketSound);
+        _awardsController.Initialize(_soundsManager.PlayWinSound,_soundsManager.PlayDefeatSound);
     }
 
     private void SubscribeToEvents()
     {
+        _spinDrumController.OnRotationStart += _soundsManager.PlayDrumSpinSound;
         _tokensManager.OnDestroyToken += _tokensView.SetTokensAmount;
-        _tokensManager.OnDestroyToken += _soundsManager.PlayAudio;
         _spinDrumController.OnRotationFinished += _stopLineController.RayActivation;
         _spinDrumController.OnRotationFinished += _spinButtonController.ChangeButtonInteractivity;
         _stopLineController.OnAwardEarned += _awardsController.SpawnAward;
         _winningResourcesStorage.OnResourcesWon += winningResourcesStorageView.UpdateResourcesWonAmount;
         _winningResourcesStorage.OnResourcesWon += _playerData.UpdateResourcesAmount;
         _playerData.OnResourceUpdated += _playerDataView.UpdateResourcesAmount;
-        chestAnimationController.PlayAnimationFinished += _spinButtonController.ChangeButtonInteractivity;
+        _chestAnimationController.PlayAnimationFinished += _spinButtonController.ChangeButtonInteractivity;
     }
 
     private void OnDestroy()
     {
+        _spinDrumController.OnRotationStart -= _soundsManager.PlayDrumSpinSound;
         _tokensManager.OnDestroyToken -= _tokensView.SetTokensAmount;
-        _tokensManager.OnDestroyToken -= _soundsManager.PlayAudio;
         _spinDrumController.OnRotationFinished -= _stopLineController.RayActivation;
         _spinDrumController.OnRotationFinished -= _spinButtonController.ChangeButtonInteractivity;
         _stopLineController.OnAwardEarned -= _awardsController.SpawnAward;
         _winningResourcesStorage.OnResourcesWon -= winningResourcesStorageView.UpdateResourcesWonAmount;
         _winningResourcesStorage.OnResourcesWon -= _playerData.UpdateResourcesAmount;
         _playerData.OnResourceUpdated -= _playerDataView.UpdateResourcesAmount;
-        chestAnimationController.PlayAnimationFinished -= _spinButtonController.ChangeButtonInteractivity;
+        _chestAnimationController.PlayAnimationFinished -= _spinButtonController.ChangeButtonInteractivity;
     }
 }
